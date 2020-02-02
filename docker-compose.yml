@@ -1,0 +1,13 @@
+version: '3'
+
+services: 
+
+  my_lab:
+    container_name: my_lab 
+    image: 'jupyter/base-notebook'
+    stdin_open: true
+    tty: true
+    ports:
+      - "8888:8888"
+    # volumes:
+    #   - ./web_backend:/usr/src
