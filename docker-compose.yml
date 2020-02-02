@@ -9,5 +9,7 @@ services:
     tty: true
     ports:
       - "8888:8888"
-    # volumes:
-    #   - ./web_backend:/usr/src
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./projects:/home/jovyan/work

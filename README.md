@@ -28,15 +28,14 @@ $ chmod +x Anaconda3-2019.10-Linux-x86_64.sh
 $ Anaconda3-2019.10-Linux-x86_64.sh
 ```
 
+make sure you add it to bash
 ```bash
 vi .bashrc
 export PATH=/home/ubuntu/anaconda3/bin:$PATH
 ```
 
-python2 
-```bash
-$ sudo apt install python-minimal
-```
-
 5. run ./scirpts/init.sh
-6. 
+6. go to port 8888 and check it out
+
+
+Recommended : https://github.com/jakevdp/PythonDataScienceHandbook.git
