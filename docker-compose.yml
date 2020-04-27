@@ -2,9 +2,11 @@ version: '3'
 
 services: 
 
-  my_lab:
-    container_name: my_lab 
-    image: 'jupyter/base-notebook'
+  lab:
+    container_name: lab 
+    build: 
+      context: .
+      dockerfile: Dockerfile      
     stdin_open: true
     tty: true
     ports:
