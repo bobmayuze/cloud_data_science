@@ -2,16 +2,52 @@ version: '3'
 
 services: 
 
-  lab:
-    container_name: lab 
-    build: 
-      context: .
-      dockerfile: Dockerfile      
+  # lab:
+  #   container_name: lab 
+  #   build: 
+  #     context: .
+  #     dockerfile: Dockerfile      
+  #   stdin_open: true
+  #   tty: true
+  #   ports:
+  #     - "8888:8888"
+  #   environment:
+  #     - JUPYTER_ENABLE_LAB=yes
+  #   volumes:
+  #     - ./projects:/home/jovyan/work
+
+  rabbit_mq:
+    container_name: rabbit_mq
+    image: "rabbitmq:3.7.3-management"
+    hostname: "rabbit_mq"
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=SWQOKODSQALRPCLNMEQG
+      - RABBITMQ_DEFAULT_USER=rabbitmq_username
+      - RABBITMQ_DEFAULT_PASS=rabbitmq_password
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "4369:4369"
+      - "5671:5671"
+      - "5672:5672"
+      - "15672:15672"
+
+  mongo_result_backend:
+    container_name: mongo_result_backend
+    image: "aashreys/mongo-auth"
+    environment:
+      - AUTH=yes
+      - MONGODB_ADMIN_USER=admin_user
+      - MONGODB_ADMIN_PASS=admin_user_pass
+      - MONGODB_APPLICATION_DATABASE=TMS_DB
+      - MONGODB_APPLICATION_USER=application_user
+      - MONGODB_APPLICATION_PASS=application_user_pass
+    ports:
+      - "27017:27017"      
+
+  worker:
+    container_name: worker
+    build: worker
     stdin_open: true
     tty: true
-    ports:
-      - "8888:8888"
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
     volumes:
-      - ./projects:/home/jovyan/work
+      - ./worker:/usr/src      
