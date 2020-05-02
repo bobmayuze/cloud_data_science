@@ -25,8 +25,8 @@ class CallbackTask(Task):
 
 # different callback functions for each task
 @app.task(base=CallbackTask)
-def sample_task(num_of_digist):
-    r = task_inventory.print_pi(num_of_digist)
+def get_page(page_number):
+    r = task_inventory.rapper_get_page_csv(page_number)
     time.sleep(5)
     return r
 
